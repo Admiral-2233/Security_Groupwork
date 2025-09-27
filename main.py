@@ -1,20 +1,56 @@
-# This is a sample Python script.
+# main.py
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import sys
+import socket
+from PySide6.QtWidgets import QApplication
+from auth import authenticate_user, register_user
+from chat import ChatSystem
+from gui import ChatWindow
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+def main():
+    # Simple console input to get username and password for demo purposes.
+    username = input("Enter your username: ")
+    password = input("Enter your password: ")
+    # Try to authenticate, if fails and user chooses, register new.
+    success, msg = authenticate_user(username, password)
+    if not success:
+        print(msg)
+        choice = input("User not found or wrong password. Register new? (y/n): ")
+        if choice.lower() == 'y':
+            ok, msg = register_user(username, password)
+            if not ok:
+                print("Registration failed:", msg)
+                sys.exit(1)
+            else:
+                print("Registration successful, please relaunch to login.")
+                sys.exit(0)
+        else:
+            sys.exit(0)
+    # If authentication successful or just registered
+    app = QApplication(sys.argv)
+    # Choose a default port (could make this configurable or dynamic).
+    listen_port = next((port for port in range(9000, 9100)), 9000)
+    # Initialize chat system
+    chat_system = ChatSystem(username, listen_port)
+    # Create and show the main window
+    window = ChatWindow(chat_system)
+    window.show()
+    # Start Qt event loop
+    sys.exit(app.exec())
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+def pick_free_port(start=9000, end=9100):
+    for p in range(start, end):
+        with socket.socket() as s:
+            try:
+                s.bind(("", p))
+                return p
+            except OSError:
+                continue
+    return 9000
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+listen_port = pick_free_port()
 
-print("Ciallo\n")
-print("OvO\n")
-
+if __name__ == "__main__":
+    main()
