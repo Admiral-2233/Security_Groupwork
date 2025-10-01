@@ -9,8 +9,10 @@ class ChatSystem(QObject):
     # GUI cares about these:
     user_joined = Signal(str)
     user_left = Signal(str)
-    message_received = Signal(str, str)        # (from_user, message_text)
-    file_received = Signal(str, bytes, str)    # (from_user, file_bytes, filename)
+    message_received = Signal(str, str)
+    # (from_user, message_text)
+    file_received = Signal(str, bytes, str)
+    # (from_user, file_bytes, filename)
 
     # NEW: thread-safe dial request (name, host, port); emitted from Zeroconf thread,
     # handled in Qt (GUI) thread.
@@ -88,8 +90,6 @@ class ChatSystem(QObject):
         if name and name != "UnknownPeer" and name != self.local_username:
             self.user_joined.emit(name)
 
-    # ---- send APIs ----
-
     def send_message(self, target: str, text: str):
         if not text:
             return
@@ -130,3 +130,4 @@ class ChatSystem(QObject):
             conn.send_file(data, filename)
             return True, "File sent."
         return False, "Target not connected."
+
