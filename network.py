@@ -1,14 +1,9 @@
 # network.py - WebSocket transport, handshake, and optional NAT (UPnP).
-# Default behavior: UPnP is DISABLED; enable it only by setting CHAT_USE_UPNP=1.
-# Handshake is text-only:
-#   client -> server:  <PEM public key>
-#   server -> client:  SESSKEY:<base64(RSA_encrypt(session_aes_key))>
-#   client -> server:  NAME:<username>
-# After that, both sides exchange AES-encrypted text frames (base64 strings).
-#
-# Notes:
-# - Keep all Qt networking calls on the Qt thread (call connect_to_peer from GUI/Qt thread).
-# - Zeroconf callbacks happen on their own thread; make sure to bounce into Qt thread before dialing.
+# UPnP is DISABLED; enable it only by setting CHAT_USE_UPNP=1.
+
+# client -> server: <PEM public key>
+# server -> client: SESSKEY:<base64(RSA_encrypt(session_aes_key))>
+# client -> server: NAME:<username>
 
 from PySide6.QtWebSockets import QWebSocketServer, QWebSocket
 from PySide6.QtNetwork import QHostAddress
@@ -18,9 +13,7 @@ from crypto import generate_rsa_keypair, rsa_encrypt, rsa_decrypt, generate_aes_
 import base64
 import os
 
-# ------------------------------
-# Per-peer connection wrapper
-# ------------------------------
+
 class PeerConnection(QObject):
     """Wraps a QWebSocket and an AES session key; exposes 'send_text' and 'send_file' APIs."""
     message_received = Signal(str, str)           # (from_peer, message_text)
@@ -104,9 +97,6 @@ class PeerConnection(QObject):
             pass
 
 
-# ------------------------------
-# Network manager: server + dialer + handshake + (optional) UPnP
-# ------------------------------
 class NetworkManager(QObject):
     """Owns the WS server, outgoing dials, handshake state, and a map of active PeerConnections."""
     new_connection = Signal(PeerConnection)   # Emitted right after a PeerConnection is created
@@ -152,8 +142,8 @@ class NetworkManager(QObject):
         else:
             print("[UPnP] disabled (LAN mode). Set CHAT_USE_UPNP=1 to enable.")
 
-    # Public API -------------
-
+    
+    # Public API
     def connect_to_peer(self, peer_name: str, host: str, port: int):
         """Dial out to a discovered peer (host:port). Call this from the Qt thread."""
         sock = QWebSocket()
@@ -171,8 +161,9 @@ class NetworkManager(QObject):
         print(f"[dial] connecting to {peer_name or host} at {url.toString()} ...")
         sock.open(url)
 
-    # ------------- Server side -------------
-
+    
+    # Server side
+    
     def _handle_new_connection(self):
         client_sock = self.server.nextPendingConnection()
         # Initialize pending state for handshake
@@ -418,3 +409,4 @@ class NetworkManager(QObject):
         except Exception as e:
             print("[UPnP] port forwarding not available:", e)
             self.external_port = None
+
