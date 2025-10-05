@@ -1,0 +1,12 @@
+server:
+  host: "0.0.0.0"
+  port: 9001
+  introducer: false
+
+bootstrap:
+  - host: "127.0.0.1"
+    port: 9000
+    pubkey: ""   # 可选：固定 introducer 公钥（pin）
+  - host: "127.0.0.1"
+    port: 9001
+    pubkey: ""
