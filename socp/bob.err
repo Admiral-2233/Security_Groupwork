@@ -1,0 +1,33 @@
+Traceback (most recent call last):
+  File "E:\python\socp\.venv\lib\site-packages\websockets\legacy\protocol.py", line 963, in transfer_data
+    message = await self.read_message()
+  File "E:\python\socp\.venv\lib\site-packages\websockets\legacy\protocol.py", line 1033, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "E:\python\socp\.venv\lib\site-packages\websockets\legacy\protocol.py", line 1108, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "E:\python\socp\.venv\lib\site-packages\websockets\legacy\protocol.py", line 1165, in read_frame
+    frame = await Frame.read(
+  File "E:\python\socp\.venv\lib\site-packages\websockets\legacy\framing.py", line 68, in read
+    data = await reader(2)
+  File "C:\Program Files\python\lib\asyncio\streams.py", line 721, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "client.py", line 161, in <module>
+    asyncio.run(run(sys.argv[1], sys.argv[2]))
+  File "C:\Program Files\python\lib\asyncio\runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "C:\Program Files\python\lib\asyncio\base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "client.py", line 156, in run
+    await asyncio.gather(rx(), tx())
+  File "client.py", line 43, in rx
+    msg = await ws.recv()
+  File "E:\python\socp\.venv\lib\site-packages\websockets\legacy\protocol.py", line 568, in recv
+    await self.ensure_open()
+  File "E:\python\socp\.venv\lib\site-packages\websockets\legacy\protocol.py", line 939, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: no close frame received or sent

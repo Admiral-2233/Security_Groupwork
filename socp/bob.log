@@ -1,0 +1,5 @@
+Commands: /list | /tell <user> <text> | /all <text> | /file <user> <path>
+
+[ERROR] {'code': 'NAME_IN_USE', 'detail': 'bob-002'}
+Unknown command
+Unknown command
