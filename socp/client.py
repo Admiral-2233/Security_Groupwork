@@ -7,6 +7,8 @@ from crypto_socp import (gen_rsa4096_pair, export_pub_b64url, import_pub_b64url,
 from envelope import make_envelope
 from db import get_pubkey, upsert_user, load_db
 
+from pathlib import Path
+
 DB = load_db()
 
 def dm_content_sig(priv, ct_b64, frm, to, ts):
@@ -123,6 +125,10 @@ async def run(user_id: str, server_url: str):
                 elif line.startswith("/file "):
                     try:
                         _, dst, path = line.split(" ", 2)
+                        # Check the Path to ensure the security
+                        if os.path.isabs(path) or ".." in Path(path).parts:
+                            print("This file path is invalid")
+                            continue
                         data = open(path, "rb").read()
                     except Exception:
                         print("usage: /file <user> <path>"); continue
