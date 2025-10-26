@@ -429,6 +429,3 @@ for stat in top_stats[:10]:
     print(stat)
 "
 ```
-
-
-**Note**: This README contains technical details and security analysis for educational purposes only. For actual deployment, please configure security according to specific needs.
