@@ -430,26 +430,5 @@ for stat in top_stats[:10]:
 "
 ```
 
-## Legal and Compliance
-
-### Terms of Use
-- This system is for educational and research purposes only
-- Must not be used for illegal activities or malicious purposes
-- Users should comply with local laws and regulations
-- System developers are not responsible for misuse
-
-### Privacy Protection
-- End-to-end encryption ensures message privacy
-- Servers do not store message content
-- User public keys are public, private keys are stored locally
-- Comply with data protection regulations
-
-### Security Disclosure
-If you discover security vulnerabilities, please report them through the following methods:
-- Send email to: security@example.com
-- Provide detailed vulnerability description and reproduction steps
-- Allow reasonable time for fixes before public disclosure
-
----
 
 **Note**: This README contains technical details and security analysis for educational purposes only. For actual deployment, please configure security according to specific needs.
