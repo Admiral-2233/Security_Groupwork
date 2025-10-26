@@ -1,5 +1,14 @@
-PySide6==6.7.2
-qasync==0.24.0
-websockets==12.0
-PyYAML==6.0.2
-pycryptodome==3.20.0
+PySide6
+qasync
+websockets
+PyYAML
+pycryptodome
+
+
+# PySide6==6.7.2
+# qasync==0.24.0
+# websockets==12.0
+# PyYAML==6.0.2
+# pycryptodome==3.20.0
+
+# Install the latest version, because certain packages could maintain potential security risks, according to the reports of peer review.

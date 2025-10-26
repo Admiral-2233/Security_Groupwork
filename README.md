@@ -1,18 +1,6 @@
 
 
-# SOCP v1.3 - Secure Overlay Chat Protocol
-
-## Project Overview
-
-SOCP (Secure Overlay Chat Protocol) v1.3 is a distributed end-to-end encrypted chat system that adopts a peer-to-peer network architecture without central authority. The system supports user lists, private messages, public channels, and file transfers through a peer overlay network, designed for advanced security programming courses.
-
-### Core Features
-- **End-to-end encryption**: Uses RSA-4096 OAEP encryption and RSASSA-PSS digital signatures
-- **Distributed architecture**: Peer-to-peer network without central authority, supporting multi-server interconnection
-- **User management**: User registration, online status management, and user list functionality
-- **Message delivery**: Supports private messages and public channel messages
-- **File transfer**: Chunked encrypted file transfer functionality
-- **Multiple clients**: Supports both command-line interface and graphical user interface clients
+# SOCP v1.3
 
 ## System Architecture
 
@@ -41,33 +29,12 @@ SOCP (Secure Overlay Chat Protocol) v1.3 is a distributed end-to-end encrypted c
 
 ### Environment Preparation
 
-#### System Requirements
-- **Operating System**: Windows 10/11, Linux, macOS
-- **Python Version**: Python 3.9 or higher
-- **Memory Requirements**: Minimum 512MB, recommended 1GB+
-- **Network Requirements**: Open ports 9000-9010 (configurable)
 
-#### Dependency Installation
-```bash
-# 1. Create virtual environment
-python -m venv .venv
+#### Dependency Installation (Preparation)
 
-# 2. Activate virtual environment (Windows)
-.venv\Scripts\activate
-
-# 3. Activate virtual environment (Linux/Mac)
-source .venv/bin/activate
-
-# 4. Install dependencies
-pip install -r requirements.txt
+pip install requirements.txt
 ```
 
-#### Detailed Dependency Description
-- **PySide6==6.7.2**: Qt GUI framework for graphical interface clients
-- **qasync==0.24.0**: Qt async integration to ensure GUI doesn't freeze
-- **websockets==12.0**: WebSocket communication library for handling real-time connections
-- **PyYAML==6.0.2**: YAML configuration file parsing
-- **pycryptodome==3.20.0**: Cryptographic operations library providing RSA algorithm support
 
 ### Server Deployment
 
