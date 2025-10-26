@@ -1,9 +1,5 @@
 # Reflective Commentary - SOCP Implementation
 
-**Group Name:** [Your Group Name]
-**Group Members:** [Member 1 Name (%), Member 2 Name (%), Member 3 Name (%)]
-**Date:** October 26, 2025
-
 ## 1. Reflection on the Standardized Protocol
 
 The SOCP v1.3 protocol adopted by our class represents a well-balanced approach to secure distributed communication. The protocol's strength lies in its mandatory use of RSA-4096 bit keys for both encryption (RSA-OAEP) and signatures (RSASSA-PSS), ensuring robust cryptographic protection. The overlay network architecture eliminates single points of failure, while the envelope-based message structure provides clear separation between routing metadata and encrypted payloads.

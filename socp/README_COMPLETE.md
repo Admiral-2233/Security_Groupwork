@@ -1,13 +1,3 @@
-# SOCP v1.3 - Secure Overlay Chat Protocol Implementation
-
-**Group Name:** [Your Group Name]
-**Group Members:** [Member Names]
-**Course:** Advanced Secure Programming
-**Date:** October 2025
-
-## Overview
-
-This repository contains our implementation of the SOCP (Secure Overlay Chat Protocol) v1.3, a distributed end-to-end encrypted chat system with no central authority. The system supports user listing, private messaging, public channels, and file transfers through a peer-to-peer overlay network.
 
 ## Repository Structure
 
@@ -35,10 +25,6 @@ socp/
 ```
 
 ## Installation
-
-### Prerequisites
-- Python 3.9 or higher
-- Virtual environment (recommended)
 
 ### Setup Instructions
 
@@ -205,22 +191,3 @@ Our implementation has been tested for interoperability with:
 - Wait for presence propagation (few seconds)
 - Use `/list` to verify user online status
 
-## Version Information
-
-- Protocol Version: SOCP v1.3
-- Implementation Version: 1.0.0
-- Python Version: 3.9+
-
-## Academic Integrity Notice
-
-This code is submitted as part of an academic assignment. The vulnerable version contains intentional security flaws for educational purposes only. DO NOT deploy the vulnerable version in any production environment.
-
-## Contact
-
-For questions about this implementation, please contact:
-- [Your Email]
-- [Group Member Emails]
-
-## License
-
-This project is for educational purposes only as part of the Advanced Secure Programming course.

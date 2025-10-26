@@ -1,6 +1,6 @@
 
 
-# SOCP v1.3
+# SOCP
 
 ## System Architecture
 
